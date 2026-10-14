@@ -8,7 +8,10 @@ describe('open', () => {
     const out = await run('open projects/nexus/demo.url', ctx)
     expect(ctx.calls).toContainEqual(['openUrl', 'https://nexus.leonelrosado.dev'])
     expect(out).toContainEqual({
-      type: 'link', label: 'https://nexus.leonelrosado.dev', href: 'https://nexus.leonelrosado.dev', download: false,
+      type: 'link',
+      label: 'https://nexus.leonelrosado.dev',
+      href: 'https://nexus.leonelrosado.dev',
+      download: false,
     })
   })
 
@@ -22,7 +25,12 @@ describe('open', () => {
     const ctx = makeCtx()
     const out = await run('open ~/cv/leonel-rosado-cv-es.pdf', ctx)
     expect(ctx.calls).toContainEqual(['download', '/cv/leonel-rosado-cv-es.pdf', 'leonel-rosado-cv-es.pdf'])
-    expect(out).toContainEqual({ type: 'link', label: 'leonel-rosado-cv-es.pdf', href: '/cv/leonel-rosado-cv-es.pdf', download: true })
+    expect(out).toContainEqual({
+      type: 'link',
+      label: 'leonel-rosado-cv-es.pdf',
+      href: '/cv/leonel-rosado-cv-es.pdf',
+      download: true,
+    })
   })
 
   it('shows screenshots inline', async () => {
@@ -38,7 +46,10 @@ describe('open', () => {
     expect(out).toHaveLength(1)
     expect(out[0].type).toBe('gallery')
     expect(out[0].images.map((image) => image.alt)).toEqual([
-      'Nexus landing page hero', 'Pricing table with annual billing selected', 'Demo request dialog', 'Nexus on a phone',
+      'Nexus landing page hero',
+      'Pricing table with annual billing selected',
+      'Demo request dialog',
+      'Nexus on a phone',
     ])
   })
 
@@ -87,7 +98,11 @@ describe('shortcuts', () => {
   it('contact shows the email as a mailto link and offers the form', async () => {
     const out = await run('contact', makeCtx())
     const table = out.find((block) => block.type === 'table')
-    expect(table.rows).toContainEqual({ label: 'Email', value: 'leonelrosado2407@gmail.com', href: 'mailto:leonelrosado2407@gmail.com' })
+    expect(table.rows).toContainEqual({
+      label: 'Email',
+      value: 'leonelrosado2407@gmail.com',
+      href: 'mailto:leonelrosado2407@gmail.com',
+    })
     expect(out).toContainEqual({ type: 'actions', label: 'Send me a message right here:', items: ['send-message'] })
   })
 

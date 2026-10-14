@@ -40,13 +40,27 @@ export function createShell(env) {
   }
 
   const ctx = {
-    get fs() { return fs.value },
-    get cwd() { return cwd.value },
-    get prevCwd() { return prevCwd.value },
-    get t() { return env.t },
-    get locale() { return env.locale.value },
-    get theme() { return env.theme.value },
-    get history() { return history.value },
+    get fs() {
+      return fs.value
+    },
+    get cwd() {
+      return cwd.value
+    },
+    get prevCwd() {
+      return prevCwd.value
+    },
+    get t() {
+      return env.t
+    },
+    get locale() {
+      return env.locale.value
+    },
+    get theme() {
+      return env.theme.value
+    },
+    get history() {
+      return history.value
+    },
     themes: env.themes,
     commands,
     setCwd(path) {
@@ -168,8 +182,20 @@ export function createShell(env) {
   }
 
   return {
-    lines, cwd, prompt, busy, ready, pending,
-    submit, runCommand, cancel, historyStep, tab, clear, playIntro, finishIntro,
+    lines,
+    cwd,
+    prompt,
+    busy,
+    ready,
+    pending,
+    submit,
+    runCommand,
+    cancel,
+    historyStep,
+    tab,
+    clear,
+    playIntro,
+    finishIntro,
     suggestions: (input) => suggestions(input, ctx),
   }
 }

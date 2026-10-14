@@ -6,7 +6,13 @@ const good = ['Ana López', 'ana@example.com', 'Hola, quiero cotizar un sitio we
 
 function recordingCtx(result = { ok: true }, overrides = {}) {
   const sent = []
-  const ctx = makeCtx({ sendMessage: async (payload) => { sent.push(payload); return result }, ...overrides })
+  const ctx = makeCtx({
+    sendMessage: async (payload) => {
+      sent.push(payload)
+      return result
+    },
+    ...overrides,
+  })
   return { ctx, sent }
 }
 
@@ -14,18 +20,34 @@ describe('send-message', () => {
   it('collects name, email and message, then sends', async () => {
     const { ctx, sent } = recordingCtx()
     const out = await run('send-message', ctx, good)
-    expect(out.filter((block) => block.type === 'prompt').map((block) => block.label))
-      .toEqual(['Your name:', 'Your email:', 'Your message:', 'Send it? (y/n):'])
-    expect(sent).toEqual([{
-      name: 'Ana López', email: 'ana@example.com', message: 'Hola, quiero cotizar un sitio web',
-      subject: 'New message from the leonel-os terminal',
-    }])
+    expect(out.filter((block) => block.type === 'prompt').map((block) => block.label)).toEqual([
+      'Your name:',
+      'Your email:',
+      'Your message:',
+      'Send it? (y/n):',
+    ])
+    expect(sent).toEqual([
+      {
+        name: 'Ana López',
+        email: 'ana@example.com',
+        message: 'Hola, quiero cotizar un sitio web',
+        subject: 'New message from the leonel-os terminal',
+      },
+    ])
     expect(textOf(out)).toContain("Message sent! I'll reply within 24 hours.")
   })
 
   it('asks again until each answer is valid', async () => {
     const { ctx, sent } = recordingCtx()
-    const out = await run('send-message', ctx, ['  ', 'Ana', 'nope', 'ana@example.com', 'short', 'A longer message here', 'y'])
+    const out = await run('send-message', ctx, [
+      '  ',
+      'Ana',
+      'nope',
+      'ana@example.com',
+      'short',
+      'A longer message here',
+      'y',
+    ])
     const errors = out.filter((block) => block.type === 'error').map((block) => block.text)
     expect(errors).toEqual([
       'This field is required.',
@@ -54,7 +76,10 @@ describe('send-message', () => {
     const out = await run('send-message', ctx, good)
     expect(out).toContainEqual({ type: 'error', text: "Couldn't send it. Please email me directly:" })
     expect(out).toContainEqual({
-      type: 'link', label: 'leonelrosado2407@gmail.com', href: 'mailto:leonelrosado2407@gmail.com', download: false,
+      type: 'link',
+      label: 'leonelrosado2407@gmail.com',
+      href: 'mailto:leonelrosado2407@gmail.com',
+      download: false,
     })
   })
 

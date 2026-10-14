@@ -3,7 +3,13 @@ import { detectLocale, saveLocale } from './locale'
 
 const memory = (initial = {}) => {
   const data = { ...initial }
-  return { data, get: (k) => data[k] ?? null, set: (k, v) => { data[k] = v } }
+  return {
+    data,
+    get: (k) => data[k] ?? null,
+    set: (k, v) => {
+      data[k] = v
+    },
+  }
 }
 
 describe('detectLocale', () => {

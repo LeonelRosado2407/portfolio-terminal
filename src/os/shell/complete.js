@@ -4,11 +4,12 @@ import { argLimit, findCommand } from './run'
 
 const MAX_SUGGESTIONS = 6
 
-const commonPrefix = (words) => words.reduce((prefix, word) => {
-  let i = 0
-  while (i < prefix.length && prefix[i] === word[i]) i++
-  return prefix.slice(0, i)
-})
+const commonPrefix = (words) =>
+  words.reduce((prefix, word) => {
+    let i = 0
+    while (i < prefix.length && prefix[i] === word[i]) i++
+    return prefix.slice(0, i)
+  })
 
 function pathCandidates(ctx, word, onlyDirs = false) {
   const slash = word.lastIndexOf('/')
@@ -20,9 +21,11 @@ function pathCandidates(ctx, word, onlyDirs = false) {
     .filter((child) => child.name.startsWith(base) && (base.startsWith('.') || !child.name.startsWith('.')))
     .filter((child) => !onlyDirs || child.type === 'dir')
     .sort(byName)
-    .map((child) => (child.type === 'dir'
-      ? { value: `${dirPart}${child.name}/`, label: `${child.name}/`, final: false, kind: 'dir', detail: '' }
-      : { value: `${dirPart}${child.name}`, label: child.name, final: true, kind: child.type, detail: '' }))
+    .map((child) =>
+      child.type === 'dir'
+        ? { value: `${dirPart}${child.name}/`, label: `${child.name}/`, final: false, kind: 'dir', detail: '' }
+        : { value: `${dirPart}${child.name}`, label: child.name, final: true, kind: child.type, detail: '' },
+    )
 }
 
 function commandCandidates(ctx, word) {
@@ -33,7 +36,13 @@ function commandCandidates(ctx, word) {
     .flatMap((command) => [command.name, ...(command.aliases ?? [])].map((name) => ({ name, command })))
     .filter(({ name }) => name.startsWith(word) && !seen.has(name) && seen.add(name))
     .sort((a, b) => (a.name < b.name ? -1 : 1))
-    .map(({ name, command }) => ({ value: name, label: name, final: true, kind: 'command', detail: command.summary?.(ctx.t) ?? '' }))
+    .map(({ name, command }) => ({
+      value: name,
+      label: name,
+      final: true,
+      kind: 'command',
+      detail: command.summary?.(ctx.t) ?? '',
+    }))
 }
 
 // Arguments come from the command itself: `args(ctx)` for fixed values, `paths` ('dir' or true) for the tree
@@ -43,7 +52,8 @@ function argCandidates(ctx, [commandName, ...typed], word) {
   // Nothing more to offer once the command has all the operands it accepts
   if (splitFlags(typed.filter(Boolean)).operands.length >= argLimit(command)) return []
   if (command.args) {
-    return command.args(ctx)
+    return command
+      .args(ctx)
       .filter((value) => value.startsWith(word))
       .map((value) => ({ value, label: value, final: true, kind: 'option', detail: '' }))
   }
@@ -75,6 +85,9 @@ export function suggestions(input, ctx, limit = MAX_SUGGESTIONS) {
   if (!input.trim()) return []
   const { words, items } = candidates(input, ctx)
   return items.slice(0, limit).map((item) => ({
-    value: accept(words, item), label: item.label, detail: item.detail, kind: item.kind,
+    value: accept(words, item),
+    label: item.label,
+    detail: item.detail,
+    kind: item.kind,
   }))
 }

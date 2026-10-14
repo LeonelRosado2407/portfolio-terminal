@@ -14,12 +14,16 @@ function makeEnv(overrides = {}) {
     locale,
     theme,
     themes: ['green', 'amber', 'dracula', 'light'],
-    get t() { return t },
+    get t() {
+      return t
+    },
     setLocale(next) {
       t = makeT(next)
       locale.value = next
     },
-    setTheme(name) { theme.value = name },
+    setTheme(name) {
+      theme.value = name
+    },
     openUrl: (url) => calls.push(['openUrl', url]),
     download: (href, name) => calls.push(['download', href, name]),
     reboot: () => calls.push(['reboot']),
@@ -63,7 +67,14 @@ describe('createShell', () => {
 
   it('asks for input during interactive commands and can be cancelled', async () => {
     const sent = []
-    const shell = createShell(makeEnv({ sendMessage: async (p) => { sent.push(p); return { ok: true } } }))
+    const shell = createShell(
+      makeEnv({
+        sendMessage: async (p) => {
+          sent.push(p)
+          return { ok: true }
+        },
+      }),
+    )
     await shell.submit('send-message')
     expect(shell.prompt.value).toBe('Your name:')
     await shell.submit('Ana')
@@ -88,7 +99,14 @@ describe('createShell', () => {
 
   it('ignores input while a command is still running', async () => {
     let release
-    const shell = createShell(makeEnv({ sendMessage: () => new Promise((resolve) => { release = resolve }) }))
+    const shell = createShell(
+      makeEnv({
+        sendMessage: () =>
+          new Promise((resolve) => {
+            release = resolve
+          }),
+      }),
+    )
     await shell.submit('send-message')
     await shell.submit('Ana')
     await shell.submit('ana@example.com')
@@ -127,7 +145,8 @@ describe('createShell', () => {
     expect(shell.tab('he')).toBe('help ')
     expect(shell.tab('c')).toBe('c')
     expect(strip(shell.lines.value.at(-1))).toEqual({
-      type: 'list', items: ['cat', 'cd', 'clear', 'contact', 'cv'].map((label) => ({ label, kind: 'option' })),
+      type: 'list',
+      items: ['cat', 'cd', 'clear', 'contact', 'cv'].map((label) => ({ label, kind: 'option' })),
     })
   })
 

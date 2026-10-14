@@ -19,8 +19,19 @@ describe('buildFs', () => {
   })
 
   it('exposes the portfolio sections in the home directory', () => {
-    const names = getNode(en, '/root').node.children.map((child) => child.name).sort()
-    expect(names).toEqual(['.secrets', 'about.txt', 'contact', 'cv', 'experience', 'projects', 'services.txt', 'skills'])
+    const names = getNode(en, '/root')
+      .node.children.map((child) => child.name)
+      .sort()
+    expect(names).toEqual([
+      '.secrets',
+      'about.txt',
+      'contact',
+      'cv',
+      'experience',
+      'projects',
+      'services.txt',
+      'skills',
+    ])
   })
 
   it.each(['dulce-tentacion', 'nexus'])('gives %s a README, links and screenshots', (id) => {
@@ -37,7 +48,10 @@ describe('buildFs', () => {
   it('lists every client project and experience entry', () => {
     expect(getNode(en, '/root/projects/client-work').node.children).toHaveLength(4)
     expect(getNode(en, '/root/experience').node.children.map((c) => c.name)).toEqual([
-      '01-netlancers-intern.txt', '02-netlancers-jr.txt', '03-intersoft.txt', '04-tire-base.txt',
+      '01-netlancers-intern.txt',
+      '02-netlancers-jr.txt',
+      '03-intersoft.txt',
+      '04-tire-base.txt',
     ])
   })
 
@@ -59,7 +73,9 @@ describe('buildFs', () => {
   it('makes the contact script executable and the CVs downloadable', () => {
     expect(getNode(en, '/root/contact/send-message.sh').node).toMatchObject({ type: 'exec', command: 'send-message' })
     expect(getNode(en, '/root/cv/leonel-rosado-cv-es.pdf').node).toMatchObject({
-      type: 'link', action: 'download', href: '/cv/leonel-rosado-cv-es.pdf',
+      type: 'link',
+      action: 'download',
+      href: '/cv/leonel-rosado-cv-es.pdf',
     })
   })
 })

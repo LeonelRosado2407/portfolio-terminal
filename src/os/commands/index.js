@@ -17,5 +17,20 @@ import eggs from './eggs'
 
 // Order here is the order shown by `help`: portfolio shortcuts first, Unix commands after
 export const commands = [
-  help, ...shortcuts, sendMessage, ls, cd, cat, open, pwd, whoami, history, clear, lang, theme, neofetch, reboot, ...eggs,
+  help,
+  ...shortcuts,
+  sendMessage,
+  ls,
+  cd,
+  cat,
+  open,
+  pwd,
+  whoami,
+  history,
+  clear,
+  lang,
+  theme,
+  neofetch,
+  reboot,
+  ...eggs,
 ]

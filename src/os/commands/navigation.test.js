@@ -7,7 +7,13 @@ describe('ls', () => {
     const [block] = await run('ls', makeCtx())
     expect(block.type).toBe('list')
     expect(block.items.map((item) => item.label)).toEqual([
-      'about.txt', 'contact/', 'cv/', 'experience/', 'projects/', 'services.txt', 'skills/',
+      'about.txt',
+      'contact/',
+      'cv/',
+      'experience/',
+      'projects/',
+      'services.txt',
+      'skills/',
     ])
   })
 
@@ -32,7 +38,11 @@ describe('ls', () => {
 
   it('marks links and executables with the right action', async () => {
     const [cv] = await run('ls ~/cv', makeCtx())
-    expect(cv.items[0]).toEqual({ label: 'leonel-rosado-cv-en.pdf', kind: 'link', cmd: 'open ~/cv/leonel-rosado-cv-en.pdf' })
+    expect(cv.items[0]).toEqual({
+      label: 'leonel-rosado-cv-en.pdf',
+      kind: 'link',
+      cmd: 'open ~/cv/leonel-rosado-cv-en.pdf',
+    })
     const [contact] = await run('ls contact', makeCtx())
     expect(contact.items).toContainEqual({ label: 'send-message.sh', kind: 'exec', cmd: '~/contact/send-message.sh' })
   })

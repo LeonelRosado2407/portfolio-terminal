@@ -1,7 +1,10 @@
 import { cvFiles, experience, skillGroups } from '../../data/profile'
 import { runLine } from '../shell/run'
 
-const newestFirst = [...experience].reverse().map((item) => item.file).join(' ')
+const newestFirst = [...experience]
+  .reverse()
+  .map((item) => item.file)
+  .join(' ')
 const allSkills = skillGroups.map((group) => `${group.id}.txt`).join(' ')
 
 // Friendly commands for visitors who don't know the tree; each one expands into real commands

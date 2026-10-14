@@ -1,7 +1,9 @@
 <template>
   <div class="h-[100dvh] overflow-hidden bg-term-bg px-4 py-3 text-xs sm:text-sm cursor-default" @click="finish(true)">
     <p v-for="(line, i) in shown" :key="i" class="whitespace-pre-wrap break-words">
-      <template v-if="line.startsWith(OK)">{{ '[  ' }}<span class="text-term-ok">OK</span>{{ '  ]' + line.slice(OK.length) }}</template>
+      <template v-if="line.startsWith(OK)"
+        >{{ '[  ' }}<span class="text-term-ok">OK</span>{{ '  ]' + line.slice(OK.length) }}</template
+      >
       <span v-else class="text-term-dim">{{ line }}</span>
     </p>
     <p class="fixed bottom-3 right-4 text-xs text-term-dim">{{ t('term.skip_hint') }}</p>

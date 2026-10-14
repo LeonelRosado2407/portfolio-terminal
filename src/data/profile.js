@@ -17,13 +17,24 @@ export const contact = {
   linkedinName: 'Noé Leonel Rosado Quintal',
 }
 
-export const coreStack = ['Vue.js 3', 'TypeScript', 'PHP / Laravel', 'Node.js / Express', 'React', 'Tailwind CSS', 'MySQL']
+export const coreStack = [
+  'Vue.js 3',
+  'TypeScript',
+  'PHP / Laravel',
+  'Node.js / Express',
+  'React',
+  'Tailwind CSS',
+  'MySQL',
+]
 
 // Titles come from i18n: skills.groups.<id>
 export const skillGroups = [
   { id: 'frontend', items: ['JavaScript', 'TypeScript', 'Vue 3', 'React', 'Astro', 'HTML5 / CSS3', 'Tailwind CSS'] },
   { id: 'backend', items: ['PHP', 'Laravel', 'Node.js / Express', 'Slim 4', 'MySQL / MariaDB', 'REST APIs'] },
-  { id: 'testing', items: ['Vitest', 'Playwright', 'axe-core', 'Lighthouse CI', 'ESLint / Prettier', 'GitHub Actions'] },
+  {
+    id: 'testing',
+    items: ['Vitest', 'Playwright', 'axe-core', 'Lighthouse CI', 'ESLint / Prettier', 'GitHub Actions'],
+  },
   { id: 'tools', items: ['Git / GitHub', 'Vite', 'Vercel', 'SCRUM'] },
 ]
 

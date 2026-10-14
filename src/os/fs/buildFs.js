@@ -1,6 +1,12 @@
 import * as b from '../blocks'
 import {
-  clientProjects, contact, cvFiles, experience, featuredProjects, services, skillGroups,
+  clientProjects,
+  contact,
+  cvFiles,
+  experience,
+  featuredProjects,
+  services,
+  skillGroups,
 } from '../../data/profile'
 
 const dir = (name, children) => ({ type: 'dir', name, children })
@@ -21,21 +27,26 @@ function aboutFile(t) {
 }
 
 function skillsDir(t) {
-  return dir('skills', skillGroups.map((group) => file(`${group.id}.txt`, [
-    b.text(t(`skills.groups.${group.id}`), 'accent'),
-    b.tags(group.items),
-  ])))
+  return dir(
+    'skills',
+    skillGroups.map((group) =>
+      file(`${group.id}.txt`, [b.text(t(`skills.groups.${group.id}`), 'accent'), b.tags(group.items)]),
+    ),
+  )
 }
 
 function experienceDir(t) {
-  return dir('experience', experience.map(({ file: name, key }) => {
-    const k = `about.experiences.${key}`
-    return file(name, [
-      b.text(`${t(`${k}.position`)} · ${t(`${k}.company`)}`, 'accent'),
-      b.text(t(`${k}.period`), 'dim'),
-      b.text(t(`${k}.description`)),
-    ])
-  }))
+  return dir(
+    'experience',
+    experience.map(({ file: name, key }) => {
+      const k = `about.experiences.${key}`
+      return file(name, [
+        b.text(`${t(`${k}.position`)} · ${t(`${k}.company`)}`, 'accent'),
+        b.text(t(`${k}.period`), 'dim'),
+        b.text(t(`${k}.description`)),
+      ])
+    }),
+  )
 }
 
 function featuredDir(t, project) {
@@ -54,8 +65,10 @@ function featuredDir(t, project) {
     ]),
     linkNode('demo.url', project.demo, 'open'),
     linkNode('repo.url', project.repo, 'open'),
-    dir('screenshots', project.screenshots.map((shot) =>
-      linkNode(shot.file, shot.src, 'image', t(`${k}.${shot.altKey}`)))),
+    dir(
+      'screenshots',
+      project.screenshots.map((shot) => linkNode(shot.file, shot.src, 'image', t(`${k}.${shot.altKey}`))),
+    ),
   ])
 }
 
@@ -75,15 +88,26 @@ function projectsDir(t) {
     file('README.md', [
       b.text(t('projects.title'), 'accent'),
       b.text(t('projects.personal_label'), 'dim'),
-      b.table(featuredProjects.map((p) => ({
-        label: `${p.id}/`, value: p.title, cmd: `cat ~/projects/${p.id}/README.md`,
-      }))),
+      b.table(
+        featuredProjects.map((p) => ({
+          label: `${p.id}/`,
+          value: p.title,
+          cmd: `cat ~/projects/${p.id}/README.md`,
+        })),
+      ),
       b.text(t('projects.client_label'), 'dim'),
-      b.table(clientProjects.map((p) => ({
-        label: p.file, value: t(`projects.items.${p.key}.title`), cmd: `cat ~/projects/client-work/${p.file}`,
-      }))),
+      b.table(
+        clientProjects.map((p) => ({
+          label: p.file,
+          value: t(`projects.items.${p.key}.title`),
+          cmd: `cat ~/projects/client-work/${p.file}`,
+        })),
+      ),
     ]),
-    dir('client-work', clientProjects.map((project) => clientFile(t, project))),
+    dir(
+      'client-work',
+      clientProjects.map((project) => clientFile(t, project)),
+    ),
     ...featuredProjects.map((project) => featuredDir(t, project)),
   ])
 }
@@ -124,7 +148,10 @@ export function buildFs(t) {
     dir('root', [
       aboutFile(t),
       contactDir(t),
-      dir('cv', cvFiles.map((cv) => linkNode(cv.file, cv.href, 'download'))),
+      dir(
+        'cv',
+        cvFiles.map((cv) => linkNode(cv.file, cv.href, 'download')),
+      ),
       experienceDir(t),
       projectsDir(t),
       servicesFile(t),

@@ -18,27 +18,45 @@ describe('postMessage', () => {
     expect(url).toBe(ENDPOINT)
     expect(options.method).toBe('POST')
     expect(JSON.parse(options.body)).toMatchObject({
-      access_key: 'KEY', name: 'Ana', email: 'ana@example.com', message: 'Hola, quiero un sitio', subject: 'S', botcheck: false,
+      access_key: 'KEY',
+      name: 'Ana',
+      email: 'ana@example.com',
+      message: 'Hola, quiero un sitio',
+      subject: 'S',
+      botcheck: false,
     })
   })
 
   it('treats 200 with success:false as a failure', async () => {
     const fetchImpl = fakeFetch(200, { success: false, message: 'Invalid access key' })
-    expect(await postMessage(payload, { accessKey: 'KEY', fetchImpl })).toEqual({ ok: false, reason: 'Invalid access key' })
+    expect(await postMessage(payload, { accessKey: 'KEY', fetchImpl })).toEqual({
+      ok: false,
+      reason: 'Invalid access key',
+    })
   })
 
   it('reports HTTP and network errors', async () => {
-    expect(await postMessage(payload, { accessKey: 'KEY', fetchImpl: fakeFetch(500, null) }))
-      .toEqual({ ok: false, reason: 'HTTP 500' })
-    const offline = vi.fn(async () => { throw new TypeError('Failed to fetch') })
-    expect(await postMessage(payload, { accessKey: 'KEY', fetchImpl: offline })).toEqual({ ok: false, reason: 'Failed to fetch' })
+    expect(await postMessage(payload, { accessKey: 'KEY', fetchImpl: fakeFetch(500, null) })).toEqual({
+      ok: false,
+      reason: 'HTTP 500',
+    })
+    const offline = vi.fn(async () => {
+      throw new TypeError('Failed to fetch')
+    })
+    expect(await postMessage(payload, { accessKey: 'KEY', fetchImpl: offline })).toEqual({
+      ok: false,
+      reason: 'Failed to fetch',
+    })
   })
 
   it('gives up when the request hangs, so the terminal is never stuck', async () => {
-    const hanging = vi.fn((_url, { signal }) => new Promise((_resolve, reject) => {
-      // Without an abort signal this request never settles, like a stalled mobile connection
-      signal?.addEventListener('abort', () => reject(signal.reason))
-    }))
+    const hanging = vi.fn(
+      (_url, { signal }) =>
+        new Promise((_resolve, reject) => {
+          // Without an abort signal this request never settles, like a stalled mobile connection
+          signal?.addEventListener('abort', () => reject(signal.reason))
+        }),
+    )
     const result = await postMessage(payload, { accessKey: 'KEY', fetchImpl: hanging, timeoutMs: 20 })
     expect(result.ok).toBe(false)
   }, 1000)

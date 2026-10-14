@@ -12,6 +12,8 @@ describe('favicon', () => {
   it('returns an SVG data URL a <link rel="icon"> can use', () => {
     const href = faviconHref({ bg: '250 250 247', accent: '0 110 60' })
     expect(href.startsWith('data:image/svg+xml,')).toBe(true)
-    expect(decodeURIComponent(href.slice('data:image/svg+xml,'.length))).toBe(faviconSvg({ bg: '250 250 247', accent: '0 110 60' }))
+    expect(decodeURIComponent(href.slice('data:image/svg+xml,'.length))).toBe(
+      faviconSvg({ bg: '250 250 247', accent: '0 110 60' }),
+    )
   })
 })

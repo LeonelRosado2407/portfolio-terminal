@@ -4,7 +4,8 @@ import { makeT } from '../test/makeT'
 
 function keys(obj, prefix = '') {
   return Object.entries(obj).flatMap(([key, value]) =>
-    value && typeof value === 'object' ? keys(value, `${prefix}${key}.`) : [`${prefix}${key}`])
+    value && typeof value === 'object' ? keys(value, `${prefix}${key}.`) : [`${prefix}${key}`],
+  )
 }
 
 describe('messages', () => {

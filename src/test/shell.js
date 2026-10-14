@@ -29,12 +29,24 @@ export function makeCtx(overrides = {}) {
       ctx.t = makeT(next)
       ctx.fs = buildFs(ctx.t)
     },
-    setTheme(name) { ctx.calls.push(['setTheme', name]) },
-    openUrl(url) { ctx.calls.push(['openUrl', url]) },
-    download(href, filename) { ctx.calls.push(['download', href, filename]) },
-    clear() { ctx.calls.push(['clear']) },
-    reboot() { ctx.calls.push(['reboot']) },
-    matrix() { ctx.calls.push(['matrix']) },
+    setTheme(name) {
+      ctx.calls.push(['setTheme', name])
+    },
+    openUrl(url) {
+      ctx.calls.push(['openUrl', url])
+    },
+    download(href, filename) {
+      ctx.calls.push(['download', href, filename])
+    },
+    clear() {
+      ctx.calls.push(['clear'])
+    },
+    reboot() {
+      ctx.calls.push(['reboot'])
+    },
+    matrix() {
+      ctx.calls.push(['matrix'])
+    },
     sendMessage: async () => ({ ok: true }),
     ...overrides,
   }

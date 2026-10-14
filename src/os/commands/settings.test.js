@@ -25,7 +25,11 @@ describe('theme', () => {
   it('lists themes and marks the current one', async () => {
     const out = await run('theme', makeCtx())
     expect(out[0].text).toBe('Available themes (current: green):')
-    expect(out[1]).toEqual({ type: 'actions', label: null, items: ['theme green', 'theme amber', 'theme dracula', 'theme light'] })
+    expect(out[1]).toEqual({
+      type: 'actions',
+      label: null,
+      items: ['theme green', 'theme amber', 'theme dracula', 'theme light'],
+    })
   })
 
   it('sets a known theme', async () => {

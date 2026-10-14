@@ -28,7 +28,15 @@ describe('runLine', () => {
 
   it('turns a crashing command into an error block', async () => {
     const ctx = makeCtx()
-    ctx.commands = [...ctx.commands, { name: 'boom', run() { throw new Error('kaboom') } }]
+    ctx.commands = [
+      ...ctx.commands,
+      {
+        name: 'boom',
+        run() {
+          throw new Error('kaboom')
+        },
+      },
+    ]
     expect(await run('boom', ctx)).toEqual([
       { type: 'error', text: 'boom: something went wrong, but the terminal is still alive.' },
     ])

@@ -1,8 +1,9 @@
 <template>
   <div class="h-[100dvh] flex sm:items-center sm:justify-center sm:p-6">
-    <div class="flex flex-col w-full h-full sm:h-[min(85vh,48rem)] sm:max-w-4xl bg-term-bg overflow-hidden
-                sm:border sm:border-term-fg/15 sm:rounded-lg sm:shadow-2xl"
-         :class="{ 'animate-window-open': animateIntro }">
+    <div
+      class="flex flex-col w-full h-full sm:h-[min(85vh,48rem)] sm:max-w-4xl bg-term-bg overflow-hidden sm:border sm:border-term-fg/15 sm:rounded-lg sm:shadow-2xl"
+      :class="{ 'animate-window-open': animateIntro }"
+    >
       <header class="flex items-center gap-2 px-4 py-2 bg-term-fg/5 border-b border-term-fg/10 select-none">
         <span class="w-3 h-3 rounded-full bg-term-error/80" aria-hidden="true"></span>
         <span class="w-3 h-3 rounded-full bg-term-accent/50" aria-hidden="true"></span>
@@ -21,7 +22,7 @@
     </div>
 
     <!-- Outside the window: its open animation uses transform, which would trap a fixed overlay -->
-    <MatrixRain v-if="matrixOn" @done="matrixOn = false; focusPrompt()" />
+    <MatrixRain v-if="matrixOn" @done="closeMatrix" />
   </div>
 </template>
 
@@ -89,9 +90,13 @@ const scroller = ref(null)
 const promptLine = ref(null)
 
 // Keep the newest output in view. Watch the last id: the length stops changing once MAX_LINES is reached.
-watch(() => lines.value.at(-1)?.id, () => {
-  scroller.value?.scrollTo({ top: scroller.value.scrollHeight })
-}, { flush: 'post' })
+watch(
+  () => lines.value.at(-1)?.id,
+  () => {
+    scroller.value?.scrollTo({ top: scroller.value.scrollHeight })
+  },
+  { flush: 'post' },
+)
 
 function focusInput(event) {
   if (event.target.closest('a, button')) return
@@ -102,6 +107,11 @@ function focusInput(event) {
 // Don't pop the on-screen keyboard on touch devices
 function focusPrompt() {
   if (window.matchMedia('(pointer: fine)').matches) promptLine.value?.focus()
+}
+
+function closeMatrix() {
+  matrixOn.value = false
+  focusPrompt()
 }
 
 const skipIntro = () => shell.finishIntro()

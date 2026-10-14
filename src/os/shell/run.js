@@ -23,7 +23,8 @@ function lookup(name, ctx) {
     const { node, error } = resolve(ctx.fs, ctx.cwd, name)
     const command = node?.type === 'exec' ? findCommand(ctx.commands, node.command) : null
     if (command) return { command }
-    if (error || node.type === 'exec') return { blocks: [b.error(ctx.t('term.err.not_found', { cmd: 'zsh', path: name }))] }
+    if (error || node.type === 'exec')
+      return { blocks: [b.error(ctx.t('term.err.not_found', { cmd: 'zsh', path: name }))] }
     if (node.type === 'dir') return { blocks: [b.error(ctx.t('term.err.is_dir', { cmd: 'zsh', path: name }))] }
     return { blocks: [b.error(ctx.t('term.err.permission_denied', { cmd: 'zsh', path: name }))] }
   }

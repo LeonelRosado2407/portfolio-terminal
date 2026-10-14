@@ -51,7 +51,9 @@ describe('suggestions', () => {
   })
 
   it('suggests commands with their description', () => {
-    expect(suggestions('pr', ctx)).toEqual([{ value: 'projects ', label: 'projects', detail: 'my projects', kind: 'command' }])
+    expect(suggestions('pr', ctx)).toEqual([
+      { value: 'projects ', label: 'projects', detail: 'my projects', kind: 'command' },
+    ])
     expect(labels('c')).toEqual(['cat', 'cd', 'clear', 'contact', 'cv'])
   })
 

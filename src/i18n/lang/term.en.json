@@ -1,0 +1,118 @@
+{
+  "input_label": "Terminal command",
+  "quickbar_label": "Quick commands",
+  "cancel": "cancel",
+  "skip_hint": "Press any key to skip",
+  "intro": {
+    "last_login": "Last login: {date} on tty1",
+    "hint": "Type help or tap a command below to explore."
+  },
+  "banner": {
+    "role_label": "Role",
+    "role": "Full-Stack Developer · frontend focus",
+    "location_label": "Location",
+    "location": "Mérida, Yucatán, México",
+    "experience_label": "Experience",
+    "experience": "3+ years",
+    "stack_label": "Stack",
+    "status_label": "Status",
+    "status": "Open to freelance projects"
+  },
+  "help": {
+    "title": "Available commands:",
+    "tip": "Tip: click any name to run it. Use ↑/↓ for history and Tab to autocomplete."
+  },
+  "cmd": {
+    "help": "show this list",
+    "about": "about me",
+    "projects": "my projects",
+    "experience": "my work experience",
+    "skills": "tools I work with",
+    "services": "how I can help",
+    "cv": "download my CV",
+    "contact": "how to reach me",
+    "send_message": "send me a message from here",
+    "ls": "list files in a directory",
+    "cd": "change directory",
+    "cat": "print a file",
+    "open": "open a link, CV or screenshot",
+    "pwd": "print current directory",
+    "whoami": "who am I?",
+    "history": "show command history",
+    "clear": "clear the screen",
+    "lang": "switch language (es / en)",
+    "theme": "change terminal colors",
+    "neofetch": "show the welcome banner",
+    "reboot": "restart leonel-os"
+  },
+  "err": {
+    "not_found": "{cmd}: no such file or directory: {path}",
+    "not_dir": "{cmd}: not a directory: {path}",
+    "is_dir": "{cmd}: {path}: Is a directory",
+    "missing_operand": "{cmd}: missing operand",
+    "command_not_found": "command not found: {name}",
+    "did_you_mean": "Did you mean:",
+    "permission_denied": "{cmd}: permission denied: {path}",
+    "binary": "cat: {path}: binary file",
+    "not_openable": "open: {path}: nothing to open here",
+    "crashed": "{cmd}: something went wrong, but the terminal is still alive.",
+    "too_many_args": "{cmd}: too many arguments"
+  },
+  "next": "Next:",
+  "try": "Try:",
+  "fs": {
+    "highlights": "Highlights",
+    "stack": "Stack",
+    "role": "My role"
+  },
+  "open": {
+    "opening": "Opening {target}…",
+    "downloading": "Downloading {target}…"
+  },
+  "lang": {
+    "set": "Language set to English.",
+    "usage": "usage: lang es{'|'}en"
+  },
+  "theme": {
+    "set": "Theme set to {name}.",
+    "list": "Available themes (current: {current}):",
+    "unknown": "theme: unknown theme: {name}"
+  },
+  "whoami": "root — well, technically. The human behind the keyboard is Leonel Rosado.",
+  "contact": {
+    "title": "Let's build something together.",
+    "send": "Send me a message right here:"
+  },
+  "msg": {
+    "intro": "Let's write a message. Press Ctrl+C or tap cancel to abort.",
+    "name": "Your name:",
+    "email": "Your email:",
+    "message": "Your message:",
+    "confirm": "Send it? (y/n):",
+    "required": "This field is required.",
+    "invalid_email": "That doesn't look like a valid email. Try again.",
+    "too_short": "Please write at least 10 characters.",
+    "sending": "Sending…",
+    "sent": "Message sent! I'll reply within 24 hours.",
+    "failed": "Couldn't send it. Please email me directly:",
+    "discarded": "Message discarded.",
+    "subject": "New message from the leonel-os terminal"
+  },
+  "reboot": "Rebooting leonel-os…",
+  "egg": {
+    "sudo": "You're already root. With great power comes great responsibility.",
+    "rm": "rm: refusing to delete this portfolio. It took a lot of coffee to build.",
+    "editor": "{name}: no editors here, but cat works great. (And yes, you can always exit.)",
+    "hack": "Bypassing firewall… decrypting… ACCESS GRANTED. Just kidding. Want to hire me instead?",
+    "coffee": "Brewing… ☕ done. Leonel runs on coffee and clean code.",
+    "secrets": "You found the secret file! Fun fact: this whole site is a Vue app pretending to be Linux. Thanks for snooping around.",
+    "matrix": "Wake up, Neo… The Matrix has you."
+  },
+  "gallery": {
+    "open": "View {alt}",
+    "prev": "Previous",
+    "next": "Next",
+    "close": "Close"
+  },
+  "suggestions_label": "Suggestions"
+}

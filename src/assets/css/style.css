@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Terminal palettes as RGB triples so Tailwind opacity modifiers work (border-term-fg/15).
+   Outside @layer so Tailwind never purges them. fg/dim/accent/link/ok/error all pass AA on --term-bg.
+   Keep the palette names in sync with useTheme.js and the inline script in index.html. */
+:root,
+:root[data-theme='green'] {
+  --term-bg: 10 14 10;
+  --term-bg-2: 22 28 22;
+  --term-fg: 196 240 196;
+  --term-dim: 128 170 128;
+  --term-accent: 80 250 123;
+  --term-link: 125 200 255;
+  --term-ok: 80 250 123;
+  --term-error: 255 120 120;
+}
+
+:root[data-theme='amber'] {
+  --term-bg: 20 14 6;
+  --term-bg-2: 34 26 14;
+  --term-fg: 255 200 110;
+  --term-dim: 196 150 80;
+  --term-accent: 255 176 0;
+  --term-link: 255 226 160;
+  --term-ok: 180 220 90;
+  --term-error: 255 120 100;
+}
+
+:root[data-theme='dracula'] {
+  --term-bg: 40 42 54;
+  --term-bg-2: 33 34 44;
+  --term-fg: 248 248 242;
+  --term-dim: 160 168 200;
+  --term-accent: 189 147 249;
+  --term-link: 139 233 253;
+  --term-ok: 80 250 123;
+  --term-error: 255 110 110;
+}
+
+:root[data-theme='light'] {
+  --term-bg: 250 250 247;
+  --term-bg-2: 232 232 226;
+  --term-fg: 28 28 28;
+  --term-dim: 92 92 92;
+  --term-accent: 0 110 60;
+  --term-link: 0 84 170;
+  --term-ok: 0 110 60;
+  --term-error: 176 0 32;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  background: rgb(var(--term-bg-2));
+  color: rgb(var(--term-fg));
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgb(var(--term-accent) / 0.3);
+}
+
+@layer components {
+  .chip {
+    @apply shrink-0 whitespace-nowrap min-h-[2.25rem] sm:min-h-0 px-3 py-1.5 sm:py-1 text-xs
+           border border-term-fg/20 text-term-fg transition-colors
+           hover:border-term-accent hover:text-term-accent
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-term-accent
+           disabled:opacity-50 disabled:cursor-wait;
+  }
+}
+
+@keyframes window-open {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-window-open {
+  animation: window-open 0.3s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

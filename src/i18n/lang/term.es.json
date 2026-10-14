@@ -1,0 +1,118 @@
+{
+  "input_label": "Comando de la terminal",
+  "quickbar_label": "Comandos rápidos",
+  "cancel": "cancelar",
+  "skip_hint": "Presiona cualquier tecla para saltar",
+  "intro": {
+    "last_login": "Último acceso: {date} en tty1",
+    "hint": "Escribe help o toca un comando de abajo para explorar."
+  },
+  "banner": {
+    "role_label": "Rol",
+    "role": "Desarrollador Full-Stack · enfoque en frontend",
+    "location_label": "Ubicación",
+    "location": "Mérida, Yucatán, México",
+    "experience_label": "Experiencia",
+    "experience": "3+ años",
+    "stack_label": "Stack",
+    "status_label": "Estado",
+    "status": "Abierto a proyectos freelance"
+  },
+  "help": {
+    "title": "Comandos disponibles:",
+    "tip": "Tip: haz clic en cualquier nombre para ejecutarlo. Usa ↑/↓ para el historial y Tab para autocompletar."
+  },
+  "cmd": {
+    "help": "muestra esta lista",
+    "about": "acerca de mí",
+    "projects": "mis proyectos",
+    "experience": "mi experiencia laboral",
+    "skills": "herramientas con las que trabajo",
+    "services": "cómo te puedo ayudar",
+    "cv": "descarga mi CV",
+    "contact": "cómo contactarme",
+    "send_message": "mándame un mensaje desde aquí",
+    "ls": "lista los archivos de un directorio",
+    "cd": "cambia de directorio",
+    "cat": "muestra un archivo",
+    "open": "abre un link, el CV o una captura",
+    "pwd": "muestra el directorio actual",
+    "whoami": "¿quién soy?",
+    "history": "muestra el historial de comandos",
+    "clear": "limpia la pantalla",
+    "lang": "cambia el idioma (es / en)",
+    "theme": "cambia los colores de la terminal",
+    "neofetch": "muestra el banner de bienvenida",
+    "reboot": "reinicia leonel-os"
+  },
+  "err": {
+    "not_found": "{cmd}: no existe el archivo o directorio: {path}",
+    "not_dir": "{cmd}: no es un directorio: {path}",
+    "is_dir": "{cmd}: {path}: es un directorio",
+    "missing_operand": "{cmd}: falta un operando",
+    "command_not_found": "comando no encontrado: {name}",
+    "did_you_mean": "Quizás quisiste decir:",
+    "permission_denied": "{cmd}: permiso denegado: {path}",
+    "binary": "cat: {path}: archivo binario",
+    "not_openable": "open: {path}: aquí no hay nada que abrir",
+    "crashed": "{cmd}: algo salió mal, pero la terminal sigue viva.",
+    "too_many_args": "{cmd}: demasiados argumentos"
+  },
+  "next": "Siguiente:",
+  "try": "Prueba:",
+  "fs": {
+    "highlights": "Lo más destacado",
+    "stack": "Stack",
+    "role": "Mi rol"
+  },
+  "open": {
+    "opening": "Abriendo {target}…",
+    "downloading": "Descargando {target}…"
+  },
+  "lang": {
+    "set": "Idioma cambiado a español.",
+    "usage": "uso: lang es{'|'}en"
+  },
+  "theme": {
+    "set": "Tema cambiado a {name}.",
+    "list": "Temas disponibles (actual: {current}):",
+    "unknown": "theme: tema desconocido: {name}"
+  },
+  "whoami": "root… técnicamente. El humano detrás del teclado es Leonel Rosado.",
+  "contact": {
+    "title": "Construyamos algo juntos.",
+    "send": "Mándame un mensaje desde aquí:"
+  },
+  "msg": {
+    "intro": "Vamos a escribir un mensaje. Presiona Ctrl+C o toca cancelar para salir.",
+    "name": "Tu nombre:",
+    "email": "Tu correo:",
+    "message": "Tu mensaje:",
+    "confirm": "¿Lo envío? (s/n):",
+    "required": "Este campo es obligatorio.",
+    "invalid_email": "Ese correo no se ve válido. Intenta de nuevo.",
+    "too_short": "Escribe al menos 10 caracteres.",
+    "sending": "Enviando…",
+    "sent": "¡Mensaje enviado! Te respondo en menos de 24 horas.",
+    "failed": "No se pudo enviar. Escríbeme directo a:",
+    "discarded": "Mensaje descartado.",
+    "subject": "Nuevo mensaje desde la terminal de leonel-os"
+  },
+  "reboot": "Reiniciando leonel-os…",
+  "egg": {
+    "sudo": "Ya eres root. Un gran poder conlleva una gran responsabilidad.",
+    "rm": "rm: me niego a borrar este portafolio. Costó mucho café construirlo.",
+    "editor": "{name}: aquí no hay editores, pero cat funciona de maravilla. (Y sí, siempre se puede salir.)",
+    "hack": "Saltando el firewall… desencriptando… ACCESO CONCEDIDO. Es broma. ¿Mejor me contratas?",
+    "coffee": "Preparando… ☕ listo. Leonel funciona con café y código limpio.",
+    "secrets": "¡Encontraste el archivo secreto! Dato curioso: todo este sitio es una app de Vue haciéndose pasar por Linux. Gracias por husmear.",
+    "matrix": "Despierta, Neo… La Matrix te tiene."
+  },
+  "gallery": {
+    "open": "Ver {alt}",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "close": "Cerrar"
+  },
+  "suggestions_label": "Sugerencias"
+}

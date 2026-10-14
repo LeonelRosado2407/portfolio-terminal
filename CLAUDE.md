@@ -10,7 +10,7 @@ npm run build    # production build to dist/
 
 ## Architecture
 
-Portfolio v2 as a fake OS: Vue 3 (`<script setup>`, plain JavaScript), Vite 5, Tailwind 3, vue-i18n 11 (`legacy: false`), Vitest, Vercel. Content is ported from v1 (`../portfolio`).
+Portfolio v2 as a fake OS, deployed as its own Vercel project (`leonel-os` → https://os.leonelrosado.dev, separate from v1 at leonelrosado.dev; see README → Deploy): Vue 3 (`<script setup>`, plain JavaScript), Vite 5, Tailwind 3, vue-i18n 11 (`legacy: false`), Vitest, Vercel. Content is ported from v1 (`../portfolio`).
 
 - `src/os/` is plain JS with no Vue, `window` or `document`. All side effects go through `ctx`.
   - `fs/buildFs.js` builds the virtual tree (`/root/...`) from i18n + `src/data/profile.js`. Node types: `dir`, `file` (content = output blocks), `link` (`action: open | download | image`), `exec`. Paths must not depend on the language.

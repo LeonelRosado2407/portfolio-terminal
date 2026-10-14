@@ -29,5 +29,6 @@ Portfolio v2 as a fake OS: Vue 3 (`<script setup>`, plain JavaScript), Vite 5, T
 - Tests use `src/test/makeT.js` (real messages; unknown keys throw), `src/test/shell.js` (`makeCtx`, `run`) and `src/test/blocks.js` (`textOf`).
 - Colors: only `term-*` tokens (RGB CSS vars per `[data-theme]` in `style.css`). Palettes `green | amber | dracula | light` must stay in sync across `style.css`, `useTheme.js` and the inline script in `index.html`.
 - The banner logo (`os/boot/banner.js`) must stay printable ASCII. The web font subset has no box-drawing glyphs, and `banner.test.js` enforces it.
+- Tab icon: `lib/favicon.js` builds an SVG terminal icon from `--term-bg`/`--term-accent`. `main.js` calls it on load and `useTheme` on every theme change. `public/favicon.svg` is the green fallback.
 - `localStorage` only via `safeStorage()` (keys: `lang`, `theme`, `bootSeen`).
 - Contact goes through Web3Forms (`os/net/web3forms.js`, `VITE_WEB3FORMS_KEY`). A 200 response with `success:false` counts as a failure.

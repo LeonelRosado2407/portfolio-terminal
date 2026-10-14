@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { applyFavicon } from '../lib/favicon'
 import { safeStorage } from '../lib/storage'
 
 // Keep in sync with style.css palettes and the inline script in index.html
@@ -14,6 +15,7 @@ export function useTheme() {
     theme.value = name
     document.documentElement.dataset.theme = name
     storage.set('theme', name)
+    applyFavicon()
   }
   return { theme, themes: THEMES, setTheme }
 }
